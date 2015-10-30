@@ -31,18 +31,49 @@ class SectionList extends Component {
   }
 
   detectAndScrollToSection(e) {
-    var ev = e.nativeEvent;
-    var rect = {width:1, height:1, x: ev.locationX, y: ev.locationY};
+    var ev = e.nativeEvent.touches[0];
+    //var rect = {width:1, height:1, x: ev.locationX, y: ev.locationY};
+    //var rect = [ev.locationX, ev.locationY];
 
-    UIManager.measureViewsInRect(rect, e.target, noop, (frames) => {
-      if (frames.length) {
-        var index = frames[0].index;
-        if (this.lastSelectedIndex !== index) {
-          this.lastSelectedIndex = index;
-          this.onSectionSelect(this.props.sections[index], true);
-        }
-      }
-    });
+    //UIManager.measureViewsInRect(rect, e.target, noop, (frames) => {
+    //  if (frames.length) {
+    //    var index = frames[0].index;
+    //    if (this.lastSelectedIndex !== index) {
+    //      this.lastSelectedIndex = index;
+    //      this.onSectionSelect(this.props.sections[index], true);
+    //    }
+    //  }
+    //});
+    //UIManager.findSubviewIn(e.target, rect, viewTag => {
+      //this.onSectionSelect(view, true);
+    //})
+    let targetY = ev.pageY;
+    const { y, height } = this.measure;
+    if(!y || targetY < y){
+      return;
+    }
+    let index = Math.floor((targetY - y) / height);
+    index = Math.min(index, this.props.sections.length - 1);
+    if (this.lastSelectedIndex !== index) {
+      this.lastSelectedIndex = index;
+      this.onSectionSelect(this.props.sections[index], true);
+    }
+  }
+
+  componentDidMount() {
+    const sectionItem = this.refs.sectionItem0;
+
+    setTimeout(() => {
+      sectionItem.measure((x, y, width, height, pageX, pageY) => {
+        //console.log([x, y, width, height, pageX, pageY]);
+        this.measure = {
+          y: pageY,
+          height
+        };
+      })
+    }, 0);
+
+    //console.log(sectionItem);
   }
 
   render() {
@@ -62,15 +93,26 @@ class SectionList extends Component {
           <Text style={styles.text}>{title}</Text>
         </View>;
 
-      return (
-        <View key={index} pointerEvents="none">
-          {child}
-        </View>
-      );
+      //if(index){
+        return (
+          <View key={index} ref={'sectionItem' + index} pointerEvents="none">
+            {child}
+          </View>
+        );
+      //}
+      //else{
+      //  return (
+      //    <View key={index} ref={'sectionItem' + index} pointerEvents="none"
+      //          onLayout={e => {console.log(e.nativeEvent.layout)}}>
+      //      {child}
+      //    </View>
+      //  );
+      //
+      //}
     });
 
     return (
-      <View style={[styles.container, this.props.style]}
+      <View ref="view" style={[styles.container, this.props.style]}
         onStartShouldSetResponder={returnTrue}
         onMoveShouldSetResponder={returnTrue}
         onResponderGrant={this.detectAndScrollToSection}

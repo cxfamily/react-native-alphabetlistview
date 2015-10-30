@@ -1,4 +1,19 @@
-# react-native-selectablesectionlistview
+# Based on johanneslumpe's react-native-selectablesectionlistview, thanks to him for the awesome component!      
+99% of this component was done by @johanneslumpe, and I just replaced the deprecated API for newer react native version(>=0.13),      
+and used a little trick to support both iOS and Android platforms.      
+You can find this component on npm:   
+```
+npm install react-native-alphabetlistview  --save  
+```
+
+#Known issues    
+It takes a very short delay after first render for the right side list to start to response.   
+It has a problem with displaying on landscape orientation.
+    
+    
+
+
+# following is the original readme
 
 A Listview with a sidebar to directly jump to sections.
 

@@ -47,7 +47,7 @@ class SelectableSectionsListView extends Component {
   componentDidMount() {
     // push measuring into the next tick
     setTimeout(() => {
-      UIManager.measure(this.refs.view.getNodeHandle(), (x,y,w,h) => {
+      UIManager.measure(React.findNodeHandle(this.refs.view), (x,y,w,h) => {
         this.containerHeight = h;
       });
     }, 0);
