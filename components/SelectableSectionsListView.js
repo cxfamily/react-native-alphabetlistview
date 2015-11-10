@@ -2,8 +2,8 @@
 /* jshint esnext: true */
 
 var React = require('react-native');
-var {Component, ListView, StyleSheet, View, PropTypes} = React;
-var UIManager = require('NativeModules').UIManager;
+var {Component, ListView, StyleSheet, View, PropTypes, NativeModules} = React;
+var UIManager = NativeModules.UIManager;
 var merge = require('merge');
 
 var SectionHeader = require('./SectionHeader');
