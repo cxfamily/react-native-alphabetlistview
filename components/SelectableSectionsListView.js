@@ -208,6 +208,7 @@ class SelectableSectionsListView extends Component {
           style={this.props.sectionListStyle}
           onSectionSelect={this.scrollToSection}
           sections={Object.keys(data)}
+          data={data}
           getSectionListTitle={this.props.getSectionListTitle}
           component={this.props.sectionListItem}
         /> :

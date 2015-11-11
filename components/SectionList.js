@@ -83,6 +83,10 @@ class SectionList extends Component {
         this.props.getSectionListTitle(section) :
         section;
 
+      var textStyle = this.props.data[section].length ?
+        styles.text :
+        styles.inactivetext;
+
       var child = SectionComponent ?
         <SectionComponent
           sectionId={section}
@@ -90,7 +94,7 @@ class SectionList extends Component {
         /> :
         <View
           style={styles.item}>
-          <Text style={styles.text}>{title}</Text>
+          <Text style={textStyle}>{title}</Text>
         </View>;
 
       //if(index){
@@ -175,6 +179,11 @@ var styles = StyleSheet.create({
   text: {
     fontWeight: '700',
     color: '#008fff'
+  },
+
+  inactivetext: {
+    fontWeight: '700',
+    color: '#CCCCCC'
   }
 });
 
