@@ -54,7 +54,7 @@ class SectionList extends Component {
     }
     let index = Math.floor((targetY - y) / height);
     index = Math.min(index, this.props.sections.length - 1);
-    if (this.lastSelectedIndex !== index) {
+    if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]].length) {
       this.lastSelectedIndex = index;
       this.onSectionSelect(this.props.sections[index], true);
     }
