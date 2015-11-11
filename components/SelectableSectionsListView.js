@@ -225,7 +225,7 @@ class SelectableSectionsListView extends Component {
       this.renderHeader :
       this.props.renderHeader;
 
-    var props = merge(this.props, {
+    var props = merge({}, this.props, {
       onScroll: this.onScroll,
       onScrollAnimationEnd: this.onScrollAnimationEnd,
       dataSource,
