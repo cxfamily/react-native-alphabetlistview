@@ -63,7 +63,7 @@ class SectionList extends Component {
   componentDidMount() {
     const sectionItem = this.refs.sectionItem0;
 
-    setTimeout(() => {
+    this.measureTimer = setTimeout(() => {
       sectionItem.measure((x, y, width, height, pageX, pageY) => {
         //console.log([x, y, width, height, pageX, pageY]);
         this.measure = {
@@ -74,6 +74,9 @@ class SectionList extends Component {
     }, 0);
 
     //console.log(sectionItem);
+  }
+  componentWillUnmount() {
+    this.measureTimer && clearTimeout(this.measureTimer);
   }
 
   render() {
