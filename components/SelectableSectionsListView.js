@@ -2,8 +2,8 @@
 /* jshint esnext: true */
 
 var React = require('react-native');
-var {Component, ListView, StyleSheet, View, PropTypes} = React;
-var UIManager = require('NativeModules').UIManager;
+var {Component, ListView, StyleSheet, View, PropTypes, NativeModules} = React;
+var UIManager = NativeModules.UIManager;
 var merge = require('merge');
 
 var SectionHeader = require('./SectionHeader');
@@ -208,6 +208,7 @@ class SelectableSectionsListView extends Component {
           style={this.props.sectionListStyle}
           onSectionSelect={this.scrollToSection}
           sections={Object.keys(data)}
+          data={data}
           getSectionListTitle={this.props.getSectionListTitle}
           component={this.props.sectionListItem}
         /> :
@@ -225,7 +226,7 @@ class SelectableSectionsListView extends Component {
       this.renderHeader :
       this.props.renderHeader;
 
-    var props = merge(this.props, {
+    var props = merge({}, this.props, {
       onScroll: this.onScroll,
       onScrollAnimationEnd: this.onScrollAnimationEnd,
       dataSource,

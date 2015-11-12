@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var {Component, PropTypes, StyleSheet, View, Text} = React;
-var UIManager = require('NativeModules').UIManager;
+var {Component, PropTypes, StyleSheet, View, Text, NativeModules} = React;
+var UIManager = NativeModules.UIManager;
 
 var noop = () => {};
 var returnTrue = () => true;
@@ -54,7 +54,7 @@ class SectionList extends Component {
     }
     let index = Math.floor((targetY - y) / height);
     index = Math.min(index, this.props.sections.length - 1);
-    if (this.lastSelectedIndex !== index) {
+    if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]].length) {
       this.lastSelectedIndex = index;
       this.onSectionSelect(this.props.sections[index], true);
     }
@@ -83,6 +83,10 @@ class SectionList extends Component {
         this.props.getSectionListTitle(section) :
         section;
 
+      var textStyle = this.props.data[section].length ?
+        styles.text :
+        styles.inactivetext;
+
       var child = SectionComponent ?
         <SectionComponent
           sectionId={section}
@@ -90,7 +94,7 @@ class SectionList extends Component {
         /> :
         <View
           style={styles.item}>
-          <Text style={styles.text}>{title}</Text>
+          <Text style={textStyle}>{title}</Text>
         </View>;
 
       //if(index){
@@ -175,6 +179,11 @@ var styles = StyleSheet.create({
   text: {
     fontWeight: '700',
     color: '#008fff'
+  },
+
+  inactivetext: {
+    fontWeight: '700',
+    color: '#CCCCCC'
   }
 });
 
