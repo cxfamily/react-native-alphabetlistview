@@ -29,10 +29,10 @@ I apologize for the bad name.
 The most basic way to use this component is as follows:
 
 ```javascript
-var SelectableSectionsListView = require('react-native-selectablesectionlistview');
+var AlphabetListView = require('react-native-alphabetlistview');
 
 // inside your render function
-<SelectableSectionsListView
+<AlphabetListView
   data={yourData}
   cell={YourCellComponent}
   cellHeight={100}
@@ -271,7 +271,7 @@ class MyComponent extends Component {
 
   render() {
     return (
-      <SelectableSectionsListView
+      <AlphabetListView
         data={this.state.data}
         cell={Cell}
         cellHeight={30}
