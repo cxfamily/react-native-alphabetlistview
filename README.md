@@ -262,6 +262,7 @@ class MyComponent extends Component {
         T: ['some','entries','are here'],
         U: ['some','entries','are here'],
         V: ['some','entries','are here'],
+        W: ['some','entries','are here'],
         X: ['some','entries','are here'],
         Y: ['some','entries','are here'],
         Z: ['some','entries','are here'],
