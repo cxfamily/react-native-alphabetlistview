@@ -1,12 +1,15 @@
 'use strict';
 
-var React = require('react-native');
-var {Component, PropTypes, StyleSheet, View, Text, NativeModules} = React;
+var React = require('react');
+var ReactNative = require('react-native');
+var {Component, PropTypes} = React;
+var {StyleSheet, View, Text, NativeModules} = ReactNative;
+
 var UIManager = NativeModules.UIManager;
 class SectionHeader extends Component {
 
   componentDidMount() {
-    this.props.updateTag && this.props.updateTag(React.findNodeHandle(this.refs.view), this.props.sectionId);
+    this.props.updateTag && this.props.updateTag(ReactNative.findNodeHandle(this.refs.view), this.props.sectionId);
   }
 
   render() {
