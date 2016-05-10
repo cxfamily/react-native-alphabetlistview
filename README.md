@@ -7,9 +7,10 @@ You can find this component on npm:
 npm install react-native-alphabetlistview  --save  
 ```
 
-## Known issues    
-It takes a very short delay after first render for the right side list to start to response.   
-It has a problem with displaying on landscape orientation.
+## Changelog
+
+- **v2.0.0**  
+  + Support RN 0.25+.(Thanks [@mbernardeau](https://github.com/mbernardeau)). If you have problem with a earlier version of RN, try v0.1.3.
     
     
 

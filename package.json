@@ -1,6 +1,6 @@
 {
   "name": "react-native-alphabetlistview",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A Listview with a sidebar to jump to sections directly, based on johanneslumpe's react-native-selectablesectionlistview",
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,6 @@
     "ios",
     "android"
   ],
-  "devDependencies": {
-    "react-native": ">=0.13.2"
-  },
-  "peerDependencies": {
-    "react-native": ">=0.13.2"
-  },
   "dependencies": {
     "merge": "^1.2.0"
   }
