@@ -10,7 +10,7 @@ npm install react-native-alphabetlistview  --save
 ## Changelog
 
 - **v2.0.0**  
-  + Support RN 0.25+.(Thanks [@mbernardeau](https://github.com/mbernardeau)). If you have problem with a earlier version of RN, try v0.1.3.
+  + Support RN 0.25+.(Thanks [@mbernardeau](https://github.com/mbernardeau)). If you have problem with an earlier version of RN, try v0.1.3.
     
     
 
