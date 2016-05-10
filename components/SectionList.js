@@ -1,7 +1,9 @@
 'use strict';
 
-var React = require('react-native');
-var {Component, PropTypes, StyleSheet, View, Text, NativeModules} = React;
+var React = require('react');
+var ReactNative = require('react-native');
+var {Component, PropTypes} = React;
+var {StyleSheet, View, Text, NativeModules} = ReactNative;
 var UIManager = NativeModules.UIManager;
 
 var noop = () => {};

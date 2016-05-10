@@ -1,8 +1,10 @@
 'use strict';
 /* jshint esnext: true */
 
-var React = require('react-native');
-var {Component, ListView, StyleSheet, View, PropTypes, NativeModules} = React;
+var React = require('react');
+var ReactNative = require('react-native');
+var {Component, PropTypes} = React;
+var {ListView, StyleSheet, View, NativeModules} = ReactNative;
 var UIManager = NativeModules.UIManager;
 var merge = require('merge');
 
@@ -47,7 +49,7 @@ class SelectableSectionsListView extends Component {
   componentDidMount() {
     // push measuring into the next tick
     setTimeout(() => {
-      UIManager.measure(React.findNodeHandle(this.refs.view), (x,y,w,h) => {
+      UIManager.measure(ReactNative.findNodeHandle(this.refs.view), (x,y,w,h) => {
         this.containerHeight = h;
       });
     }, 0);
@@ -108,12 +110,12 @@ class SelectableSectionsListView extends Component {
       var maxY = this.totalHeight - this.containerHeight + headerHeight;
       y = y > maxY ? maxY : y;
 
-      this.refs.listview.refs.listviewscroll.scrollTo({ x:0, y, animated: true });
+      this.refs.listview.scrollTo({ x:0, y, animated: true });
     } else {
       // this breaks, if not all of the listview is pre-rendered!
       UIManager.measure(this.cellTagMap[section], (x, y, w, h) => {
         y = y - this.props.sectionHeaderHeight;
-        this.refs.listview.refs.listviewscroll.scrollTo({ x:0, y, animated: true });
+        this.refs.listview.scrollTo({ x:0, y, animated: true });
       });
     }
 
