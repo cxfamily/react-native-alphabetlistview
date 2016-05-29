@@ -1,5 +1,5 @@
 'use strict';
 
-var SelectableSectionsListView = require('./components/SelectableSectionsListView');
+import SelectableSectionsListView from './components/SelectableSectionsListView';
 
-module.exports = SelectableSectionsListView;
+export default SelectableSectionsListView;
