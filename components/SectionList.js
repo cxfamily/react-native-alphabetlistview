@@ -1,15 +1,22 @@
 'use strict';
 
-var React = require('react');
-var ReactNative = require('react-native');
-var {Component, PropTypes} = React;
-var {StyleSheet, View, Text, NativeModules} = ReactNative;
-var UIManager = NativeModules.UIManager;
+import React, {
+  Component,
+  PropTypes,
+} from 'react';
+import ReactNative, {
+  StyleSheet,
+  View,
+  Text,
+  NativeModules,
+} from 'react-native';
 
-var noop = () => {};
-var returnTrue = () => true;
+const { UIManager } = NativeModules;
 
-class SectionList extends Component {
+const noop = () => {};
+const returnTrue = () => true;
+
+export default class SectionList extends Component {
 
   constructor(props, context) {
     super(props, context);
@@ -33,7 +40,7 @@ class SectionList extends Component {
   }
 
   detectAndScrollToSection(e) {
-    var ev = e.nativeEvent.touches[0];
+    const ev = e.nativeEvent.touches[0];
     //var rect = {width:1, height:1, x: ev.locationX, y: ev.locationY};
     //var rect = [ev.locationX, ev.locationY];
 
@@ -49,7 +56,7 @@ class SectionList extends Component {
     //UIManager.findSubviewIn(e.target, rect, viewTag => {
       //this.onSectionSelect(view, true);
     //})
-    let targetY = ev.pageY;
+    const targetY = ev.pageY;
     const { y, height } = this.measure;
     if(!y || targetY < y){
       return;
@@ -82,17 +89,17 @@ class SectionList extends Component {
   }
 
   render() {
-    var SectionComponent = this.props.component;
-    var sections = this.props.sections.map((section, index) => {
-      var title = this.props.getSectionListTitle ?
+    const SectionComponent = this.props.component;
+    const sections = this.props.sections.map((section, index) => {
+      const title = this.props.getSectionListTitle ?
         this.props.getSectionListTitle(section) :
         section;
 
-      var textStyle = this.props.data[section].length ?
+      const textStyle = this.props.data[section].length ?
         styles.text :
         styles.inactivetext;
 
-      var child = SectionComponent ?
+      const child = SectionComponent ?
         <SectionComponent
           sectionId={section}
           title={title}
@@ -165,7 +172,7 @@ SectionList.propTypes = {
   ])
 };
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     backgroundColor: 'transparent',
@@ -191,5 +198,3 @@ var styles = StyleSheet.create({
     color: '#CCCCCC'
   }
 });
-
-module.exports = SectionList;
