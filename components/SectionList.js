@@ -57,7 +57,7 @@ export default class SectionList extends Component {
       //this.onSectionSelect(view, true);
     //})
     const targetY = ev.pageY;
-    const { y, height } = this.measure;
+    const { y, width, height } = this.measure;
     if(!y || targetY < y){
       return;
     }
@@ -77,6 +77,7 @@ export default class SectionList extends Component {
         //console.log([x, y, width, height, pageX, pageY]);
         this.measure = {
           y: pageY,
+          width,
           height
         };
       })
@@ -180,8 +181,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     right: 0,
     top: 0,
-    bottom: 0,
-    width: 15
+    bottom: 0
   },
 
   item: {
