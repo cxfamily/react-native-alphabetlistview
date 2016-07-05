@@ -23,10 +23,10 @@ export default class SectionHeader extends Component {
     const SectionComponent = this.props.component;
     const content = SectionComponent ?
       <SectionComponent {...this.props} /> :
-      <Text style={styles.text}>{this.props.title}</Text>;
+      <Text>{this.props.title}</Text>;
 
     return (
-      <View ref="view" style={styles.container}>
+      <View ref="view">
         {content}
       </View>
     );

@@ -69,7 +69,7 @@ export default class SectionList extends Component {
     }
   }
 
-  componentDidMount() {
+  fixSectionItemMeasure() {
     const sectionItem = this.refs.sectionItem0;
 
     this.measureTimer = setTimeout(() => {
@@ -82,9 +82,17 @@ export default class SectionList extends Component {
         };
       })
     }, 0);
-
-    //console.log(sectionItem);
   }
+
+  componentDidMount() {
+    this.fixSectionItemMeasure();
+  }
+
+  // fix bug when change data 
+  componentDidUpdate() {
+    this.fixSectionItemMeasure();
+  }
+
   componentWillUnmount() {
     this.measureTimer && clearTimeout(this.measureTimer);
   }
@@ -177,9 +185,9 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     backgroundColor: 'transparent',
-    alignItems:'center',
+    alignItems:'flex-end',
     justifyContent:'center',
-    right: 0,
+    right: 5,
     top: 0,
     bottom: 0
   },
