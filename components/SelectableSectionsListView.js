@@ -104,7 +104,10 @@ export default class SelectableSectionsListView extends Component {
     if (!this.props.useDynamicHeights) {
       const cellHeight = this.props.cellHeight;
       let sectionHeaderHeight = this.props.sectionHeaderHeight;
-      const keys = Object.keys(this.props.data);
+      let keys = Object.keys(this.props.data);
+      if (typeof(this.props.compareFunction) === "function") {
+        keys = keys.sort(this.props.compareFunction);
+      }
       const index = keys.indexOf(section);
 
       let numcells = 0;
@@ -208,6 +211,11 @@ export default class SelectableSectionsListView extends Component {
     let sectionList;
     let renderSectionHeader;
     let dataSource;
+    let sections = Object.keys(data);
+
+    if (typeof(this.props.compareFunction) === "function") {
+      sections = sections.sort(this.props.compareFunction);
+    }
 
     if (dataIsArray) {
       dataSource = this.state.dataSource.cloneWithRows(data);
@@ -216,7 +224,7 @@ export default class SelectableSectionsListView extends Component {
         <SectionList
           style={this.props.sectionListStyle}
           onSectionSelect={this.scrollToSection}
-          sections={Object.keys(data)}
+          sections={sections}
           data={data}
           getSectionListTitle={this.props.getSectionListTitle}
           component={this.props.sectionListItem}
@@ -224,7 +232,7 @@ export default class SelectableSectionsListView extends Component {
         null;
 
       renderSectionHeader = this.renderSectionHeader;
-      dataSource = this.state.dataSource.cloneWithRowsAndSections(data);
+      dataSource = this.state.dataSource.cloneWithRowsAndSections(data, sections);
     }
 
     const renderFooter = this.props.footer ?
@@ -290,6 +298,11 @@ SelectableSectionsListView.propTypes = {
    */
   getSectionTitle: PropTypes.func,
   getSectionListTitle: PropTypes.func,
+
+  /**
+   * Function to sort sections. If not provided, the sections order will match data source
+   */
+  compareFunction: PropTypes.func,
 
   /**
    * Callback which should be called when a cell has been selected
