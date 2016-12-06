@@ -71,7 +71,9 @@ export default class SectionList extends Component {
 
   fixSectionItemMeasure() {
     const sectionItem = this.refs.sectionItem0;
-
+    if (!sectionItem) {
+      return;
+    }
     this.measureTimer = setTimeout(() => {
       sectionItem.measure((x, y, width, height, pageX, pageY) => {
         //console.log([x, y, width, height, pageX, pageY]);
