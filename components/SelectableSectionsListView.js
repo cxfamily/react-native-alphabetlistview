@@ -122,8 +122,7 @@ export default class SelectableSectionsListView extends Component {
 
       this.refs.listview.scrollTo({ x:0, y, animated: true });
     } else {
-      // this breaks, if not all of the listview is pre-rendered!
-      UIManager.measure(this.cellTagMap[section], (x, y, w, h) => {
+      UIManager.measureLayout(this.cellTagMap[section], ReactNative.findNodeHandle(this.refs.listview), () => {}, (x, y, w, h) => {
         y = y - this.props.sectionHeaderHeight;
         this.refs.listview.scrollTo({ x:0, y, animated: true });
       });
