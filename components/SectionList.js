@@ -109,9 +109,10 @@ export default class SectionList extends Component {
       const textStyle = this.props.data[section].length ?
         styles.text :
         styles.inactivetext;
+      const textSize = {};
 
       if (this.props.fontSize) {
-        textStyle.fontSize = this.props.fontSize;
+        textSize.fontSize = this.props.fontSize;
       }
 
       const child = SectionComponent ?
@@ -121,7 +122,7 @@ export default class SectionList extends Component {
         /> :
         <View
           style={styles.item}>
-          <Text style={textStyle}>{title}</Text>
+          <Text style={[textStyle, textSize]}>{title}</Text>
         </View>;
 
       //if(index){
