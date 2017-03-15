@@ -117,7 +117,7 @@ export default class SectionList extends Component {
         /> :
         <View
           style={styles.item}>
-          <Text style={textStyle}>{title}</Text>
+          <Text style={[textStyle, { fontSize: 12 }]}>{title}</Text>
         </View>;
 
       //if(index){
