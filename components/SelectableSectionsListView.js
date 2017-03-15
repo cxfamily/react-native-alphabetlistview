@@ -227,6 +227,7 @@ export default class SelectableSectionsListView extends Component {
           data={data}
           getSectionListTitle={this.props.getSectionListTitle}
           component={this.props.sectionListItem}
+          fontSize={this.props.sectionListFontSize}
         /> :
         null;
 
@@ -391,6 +392,10 @@ SelectableSectionsListView.propTypes = {
   /**
    * Styles to pass to the section list container
    */
-  sectionListStyle: stylesheetProp
+  sectionListStyle: stylesheetProp,
 
+  /**
+   * Selector text size
+   */
+  sectionListFontSize: PropTypes.number
 };
