@@ -147,6 +147,10 @@ Styles to pass to the container
 `object|number`  
 Styles to pass to the section list container
 
+#### sectionListFontSize
+`number`  
+Specifiy font size of section list letters
+
 ---
 ### Cell component
 
