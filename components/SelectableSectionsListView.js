@@ -58,6 +58,7 @@ export default class SelectableSectionsListView extends Component {
     setTimeout(() => {
       UIManager.measure(ReactNative.findNodeHandle(this.refs.view), (x,y,w,h) => {
         this.containerHeight = h;
+        this.scrollToSection(Object.keys(this.props.data)[0]);
       });
     }, 0);
   }
@@ -100,6 +101,10 @@ export default class SelectableSectionsListView extends Component {
     let y = 0;
     let headerHeight = this.props.headerHeight || 0;
     y += headerHeight;
+    
+    if(this.props.contentInset) {
+        y -= this.props.contentInset.top - headerHeight
+    }
 
     if (!this.props.useDynamicHeights) {
       const cellHeight = this.props.cellHeight;
