@@ -166,7 +166,7 @@ export default class SelectableSectionsListView extends Component {
     index = parseInt(index, 10);
 
     const isFirst = index === 0;
-    var isLast = this.sectionItemCount && this.sectionItemCount[sectionId]-1 === index;
+    const isLast = this.sectionItemCount && this.sectionItemCount[sectionId]-1 === index;
 
     const props = {
       isFirst,
