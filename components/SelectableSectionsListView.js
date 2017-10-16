@@ -1,10 +1,8 @@
 'use strict';
 /* jshint esnext: true */
 
-import React, {
-  Component,
-  PropTypes,
-} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactNative, {
   ListView,
   StyleSheet,
