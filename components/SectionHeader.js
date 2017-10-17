@@ -1,9 +1,7 @@
 'use strict';
 
-import React, {
-  Component,
-  PropTypes
-} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactNative, {
   StyleSheet,
   View,
@@ -35,14 +33,14 @@ export default class SectionHeader extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'#f8f8f8',
+    backgroundColor: '#f8f8f8',
     borderTopWidth: 1,
     borderTopColor: '#ececec'
   },
   text: {
     fontWeight: '700',
-    paddingTop:2,
-    paddingBottom:2,
+    paddingTop: 2,
+    paddingBottom: 2,
     paddingLeft: 2
   }
 });
