@@ -56,11 +56,11 @@ export default class SectionList extends Component {
     //})
     const targetY = ev.pageY;
     const { y, width, height } = this.measure;
-    if(!y || targetY < y){
+    const index = (Math.floor(ev.locationY / height));
+    if (index >= this.props.sections.length) {
       return;
     }
-    let index = Math.floor((targetY - y) / height);
-    index = Math.min(index, this.props.sections.length - 1);
+
     if (this.lastSelectedIndex !== index && this.props.data[this.props.sections[index]].length) {
       this.lastSelectedIndex = index;
       this.onSectionSelect(this.props.sections[index], true);
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: 'transparent',
     alignItems:'flex-end',
-    justifyContent:'center',
+    justifyContent:'flex-start',
     right: 5,
     top: 0,
     bottom: 0
