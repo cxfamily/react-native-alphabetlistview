@@ -120,15 +120,20 @@ export default class SelectableSectionsListView extends Component {
         numcells += this.props.data[keys[i]].length;
       }
 
-      sectionHeaderHeight = index * sectionHeaderHeight;
+      sectionHeaderHeight = index * sectionHeaderHeight + index * 12;
       y += numcells * cellHeight + sectionHeaderHeight;
       const maxY = this.totalHeight - this.containerHeight + headerHeight;
       y = y > maxY ? maxY : y;
 
+      if(index>0){
+          y = y - 40;
+      }
+
+
       this.refs.listview.scrollTo({ x:0, y, animated: true });
     } else {
       UIManager.measureLayout(this.cellTagMap[section], ReactNative.findNodeHandle(this.refs.listview), () => {}, (x, y, w, h) => {
-        y = y - this.props.sectionHeaderHeight;
+        y = y - this.props.sectionHeaderHeight - 20;
         this.refs.listview.scrollTo({ x:0, y, animated: true });
       });
     }
@@ -136,7 +141,7 @@ export default class SelectableSectionsListView extends Component {
     this.props.onScrollToSection && this.props.onScrollToSection(section);
   }
 
-  renderSectionHeader(sectionData, sectionId) {
+  renderSectionHeader(sectionData, sectionId,index) {
     const updateTag = this.props.useDynamicHeights ?
       this.updateTagInSectionMap :
       null;
@@ -163,7 +168,7 @@ export default class SelectableSectionsListView extends Component {
 
   renderHeader() {
     const Header = this.props.header;
-    return <Header />;
+    return <Header style={{backgroundColor:'#f00'}} />;
   }
 
   renderRow(item, sectionId, index) {
@@ -182,7 +187,6 @@ export default class SelectableSectionsListView extends Component {
       offsetY: this.state.offsetY,
       onSelect: this.props.onCellSelect
     };
-
     return index === 0 && this.props.useDynamicHeights ?
       <CellWrapper
         updateTag={this.updateTagInCellMap}
@@ -216,11 +220,9 @@ export default class SelectableSectionsListView extends Component {
     let renderSectionHeader;
     let dataSource;
     let sections = Object.keys(data);
-
     if (typeof(this.props.compareFunction) === "function") {
       sections = sections.sort(this.props.compareFunction);
     }
-
     if (dataIsArray) {
       dataSource = this.state.dataSource.cloneWithRows(data);
     } else {
