@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         alignItems:'center',
         justifyContent:'center',
-        right: 8,
+        right: 0,
         top: 0,
         bottom: 0
     },
