@@ -259,6 +259,8 @@ export default class SelectableSectionsListView extends Component {
       renderRow: this.renderRow,
       renderSectionHeader
     });
+      
+    let initialListSize = dataSource._cachedRowCount ? dataSource._cachedRowCount : 250
 
     props.style = void 0;
 
@@ -267,6 +269,7 @@ export default class SelectableSectionsListView extends Component {
         <ListView
           ref="listview"
           {...props}
+          initialListSize={initialListSize}
         />
         {sectionList}
       </View>
