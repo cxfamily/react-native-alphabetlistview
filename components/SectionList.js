@@ -6,6 +6,7 @@ import ReactNative, {
     StyleSheet,
     View,
     Text,
+    Platform,
     NativeModules,
 } from 'react-native';
 
@@ -123,7 +124,7 @@ export default class SectionList extends Component {
         });
 
         return (
-            <View ref="view" style={[styles.container, this.props.style]}
+            <View ref="view" style={[styles.container,Platform.OS === 'ios' && styles.iosStyle, this.props.style]}
                   onStartShouldSetResponder={returnTrue}
                   onMoveShouldSetResponder={returnTrue}
                   onResponderGrant={this.detectAndScrollToSection}
@@ -180,12 +181,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         backgroundColor: 'transparent',
         alignItems:'center',
-        justifyContent:'center',
         right: 0,
         top: 0,
         bottom: 0
     },
 
+    iosStyle: {
+        justifyContent:'center'
+    },
+    
     item: {
         padding: 0
     },
