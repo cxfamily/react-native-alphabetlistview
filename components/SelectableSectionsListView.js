@@ -1,11 +1,12 @@
 'use strict';
 /* jshint esnext: true */
 
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactNative, {
   ListView,
   StyleSheet,
+  ActivityIndicator,
   View,
   NativeModules,
 } from 'react-native';
@@ -27,7 +28,8 @@ export default class SelectableSectionsListView extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
         sectionHeaderHasChanged: (prev, next) => prev !== next
       }),
-      offsetY: 0
+      offsetY: 0,
+      firstLoading:true
     };
 
     this.renderFooter = this.renderFooter.bind(this);
@@ -60,6 +62,7 @@ export default class SelectableSectionsListView extends Component {
           this.scrollToSection(Object.keys(this.props.data)[0]);
         }
       });
+      this.setState({firstLoading: false})
     }, 0);
   }
 
@@ -266,12 +269,20 @@ export default class SelectableSectionsListView extends Component {
 
     return (
       <View ref="view" style={[styles.container, this.props.style]}>
-        <ListView
-          ref="listview"
-          {...props}
-          initialListSize={initialListSize}
-        />
-        {sectionList}
+        {this.state.firstLoading ? (
+              <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                  <ActivityIndicator/>
+              </View>
+              ):(
+              <Fragment>
+                  <ListView
+                      ref="listview"
+                      {...props}
+                      initialListSize={initialListSize}
+                  />
+                  {sectionList}
+              </Fragment>
+          )}
       </View>
     );
   }
