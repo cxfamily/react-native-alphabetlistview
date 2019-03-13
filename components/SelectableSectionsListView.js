@@ -61,6 +61,9 @@ export default class SelectableSectionsListView extends Component {
         if (this.props.contentInset && this.props.data && this.props.data.length > 0) {
           this.scrollToSection(Object.keys(this.props.data)[0]);
         }
+        setTimeout(() => {
+          this.setState({firstLoading: false})
+        },100)
       });
       this.setState({firstLoading: false})
     }, 0);
