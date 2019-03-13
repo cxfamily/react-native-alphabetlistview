@@ -65,7 +65,7 @@ export default class SelectableSectionsListView extends Component {
           this.setState({firstLoading: false})
         },100)
       });
-      this.setState({firstLoading: false})
+      
     }, 0);
   }
 
