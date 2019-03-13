@@ -63,7 +63,7 @@ export default class SelectableSectionsListView extends Component {
         }
         setTimeout(() => {
           this.setState({firstLoading: false})
-        },100)
+        },400)
       });
       
     }, 0);
